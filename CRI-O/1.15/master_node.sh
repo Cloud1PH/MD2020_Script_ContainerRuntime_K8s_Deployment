@@ -55,7 +55,6 @@ swapoff -a
   
   
 #initialize cluster
-#kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket=unix:///var/run/crio/crio.sock --apiserver-bind-port=443
 kubeadm init --cri-socket=unix:///var/run/crio/crio.sock --apiserver-bind-port=443
   
   
@@ -65,13 +64,7 @@ cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
   
  
-#Taint the master node to be able to deploy coredns pods properly
-#kubectl taint nodes --all node-role.kubernetes.io/master-
-  
- 
-#install Flannel Pod Network
-#kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-#use weave
+#install Weave Pod Network
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
   
   
