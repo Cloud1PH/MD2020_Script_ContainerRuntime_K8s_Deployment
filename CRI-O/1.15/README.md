@@ -1,1 +1,1 @@
-OS: Ubuntu 18.04
+Tested OS: Ubuntu 18.04
